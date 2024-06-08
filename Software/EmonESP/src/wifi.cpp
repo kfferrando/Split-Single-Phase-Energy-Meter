@@ -172,30 +172,30 @@ static void wifi_start()
 void WiFiEvent(WiFiEvent_t event)
 {
   switch (event) {
-    case SYSTEM_EVENT_WIFI_READY:
+    case ARDUINO_EVENT_WIFI_READY:
       DBUGS.println("WiFi interface ready");
       break;
-    case SYSTEM_EVENT_SCAN_DONE:
+    case ARDUINO_EVENT_SC_SCAN_DONE:
       DBUGS.println("Completed scan for access points");
       break;
-    case SYSTEM_EVENT_STA_START:
+    case ARDUINO_EVENT_WIFI_STA_START:
       DBUGS.println("WiFi client started");
       break;
-    case SYSTEM_EVENT_STA_STOP:
+    case ARDUINO_EVENT_WIFI_STA_STOP:
       DBUGS.println("WiFi clients stopped");
       break;
-    case SYSTEM_EVENT_STA_CONNECTED:
+    case ARDUINO_EVENT_WIFI_STA_CONNECTED:
       DBUGS.print("Connected to SSID: ");
       DBUGS.println(esid.c_str());
       client_disconnects = 0;
       break;
-    case SYSTEM_EVENT_STA_DISCONNECTED:
+    case ARDUINO_EVENT_WIFI_STA_DISCONNECTED:
       DBUGS.println("Disconnected from WiFi access point");
       break;
-    case SYSTEM_EVENT_STA_AUTHMODE_CHANGE:
+    case ARDUINO_EVENT_WIFI_STA_AUTHMODE_CHANGE:
       DBUGS.println("Authentication mode of access point has changed");
       break;
-    case SYSTEM_EVENT_STA_GOT_IP: {
+    case ARDUINO_EVENT_WIFI_STA_GOT_IP: {
         IPAddress myAddress = WiFi.localIP();
         char tmpStr[40];
         sprintf(tmpStr, "%d.%d.%d.%d", myAddress[0], myAddress[1], myAddress[2], myAddress[3]);
@@ -211,39 +211,39 @@ void WiFiEvent(WiFiEvent_t event)
         client_retry = false;
       }
       break;
-    case SYSTEM_EVENT_STA_LOST_IP:
+    case ARDUINO_EVENT_WIFI_STA_LOST_IP:
       DBUGS.println("Lost IP address and IP address is reset to 0");
       break;
-    case SYSTEM_EVENT_STA_WPS_ER_SUCCESS:
+    case ARDUINO_EVENT_WPS_ER_SUCCESS:
       DBUGS.println("WiFi Protected Setup (WPS): succeeded in enrollee mode");
       break;
-    case SYSTEM_EVENT_STA_WPS_ER_FAILED:
+    case ARDUINO_EVENT_WPS_ER_FAILED:
       DBUGS.println("WiFi Protected Setup (WPS): failed in enrollee mode");
       break;
-    case SYSTEM_EVENT_STA_WPS_ER_TIMEOUT:
+    case ARDUINO_EVENT_WPS_ER_TIMEOUT:
       DBUGS.println("WiFi Protected Setup (WPS): timeout in enrollee mode");
       break;
-    case SYSTEM_EVENT_STA_WPS_ER_PIN:
+    case ARDUINO_EVENT_WPS_ER_PIN:
       DBUGS.println("WiFi Protected Setup (WPS): pin code in enrollee mode");
       break;
-    case SYSTEM_EVENT_AP_START:
+    case ARDUINO_EVENT_WIFI_AP_START:
       DBUGS.println("WiFi access point started");
       break;
-    case SYSTEM_EVENT_AP_STOP:
+    case ARDUINO_EVENT_WIFI_AP_STOP:
       DBUGS.println("WiFi access point stopped");
       break;
-    case SYSTEM_EVENT_AP_STACONNECTED:
+    case ARDUINO_EVENT_WIFI_AP_STACONNECTED:
       DBUGS.println("Client connected");
       apClients++;
       break;
-    case SYSTEM_EVENT_AP_STADISCONNECTED:
+    case ARDUINO_EVENT_WIFI_AP_STADISCONNECTED:
       DBUGS.println("Client disconnected");
       apClients--;
       break;
-    case SYSTEM_EVENT_AP_STAIPASSIGNED:
+    case ARDUINO_EVENT_WIFI_AP_STAIPASSIGNED:
       DBUGS.println("Assigned IP address to client");
       break;
-    case SYSTEM_EVENT_AP_PROBEREQRECVED:
+    case ARDUINO_EVENT_WIFI_AP_PROBEREQRECVED:
       DBUGS.println("Received probe request");
       break;
     default:
